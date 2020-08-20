@@ -18,3 +18,21 @@ There are several items that expose the **BOM**, but first some background, in c
 1. The next place we'll go is some stream readers and writers, to see if we can capture a glimpse. 
 
 > As a side note, we will just be playing in an xUnit project using _fluent assertions_.
+
+## Enough - Show me some code!
+
+```
+[Fact]
+public void CanSeeBomOnUTF8()
+{
+    var bom = new UTF8Encoding(true);
+
+    var preamble = bom.GetPreamble();
+    preamble[0].Should().Be(0xEF);
+    preamble[1].Should().Be(0xBB);
+    preamble[2].Should().Be(0xBF);
+}
+```
+
+This gives us a passing grade, let's add a string.
+
